@@ -1,57 +1,44 @@
-# Forge 2 Qualifier
+## Features
 
-## Overview
+* Laravel REST API Backend
+* React Frontend
+* SQLite Database
+* Create Cards
+* Delete Cards
+* Drag and Drop Cards
+* Persistent Card Movement
+* Kanban Board UI
 
-This project demonstrates a two-agent workflow using Hermes and OpenClaw.
+## Tech Stack
 
-## Agents
+### Frontend
 
-### Hermes
-- Planning
-- Memory
-- Autonomous runs
+* React
+* Vite
+* @hello-pangea/dnd
 
-### OpenClaw
-- Coding
-- File operations
-- Command execution
+### Backend
 
-## Skills
+* Laravel 13
+* PHP 8.3
 
-### status-report
-Custom Hermes skill for structured progress reporting.
+### Database
 
-## Evidence
+* SQLite
 
-See screenshots folder.
+## Run Locally
 
-## Documentation
+### Backend
 
-- docs/ARCHITECTURE.md
-- docs/agent-log.md
+```bash
+cd backend
+php artisan serve
+```
 
-## Setup
+### Frontend
 
-### Hermes
-
-<commands>
-
-### OpenClaw
-
-<commands>
-
-### Slack
-
-<steps>
-
-## Screenshots
-
-<list screenshots>
-
-## Demo Video
-
-Coming soon
-
-## Kanban Project
-
-Coming soon
+```bash
+cd frontend
+npm install
+npm run dev
+```
