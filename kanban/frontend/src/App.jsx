@@ -103,156 +103,144 @@ function App() {
   };
 
   return (
-  <div className="container">
-    <div className="hero">
-  <h1>Kanban Board</h1>
-
-    <p>
-    Manage tasks with drag & drop
-    </p>
-    </div>
-
-      <p>
-        Organize tasks beautifully with a
-        modern drag & drop workflow
-      </p>
-    </div>
-
-    {boards.length === 0 ? (
-      <div className="empty-state">
-        <h2>No boards found</h2>
-
-        <a
-          href={`${API}/seed`}
-          target="_blank"
-          rel="noreferrer"
-        >
-          Seed Database
-        </a>
+    <div className="container">
+      <div className="hero">
+        <h1>Kanban Board</h1>
+        <p>
+          Manage tasks with drag & drop
+        </p>
       </div>
-    ) : (
-      boards.map((board) => (
-        <DragDropContext
-          key={board.id}
-          onDragEnd={handleDragEnd}
-        >
-          <div className="board">
-            {board.lists?.map((list) => (
-              <Droppable
-                key={list.id}
-                droppableId={String(list.id)}
-              >
-                {(provided) => (
-                  <div
-                    className="column"
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                  >
-                    <div className="column-header">
-                      <span className="column-dot"></span>
 
-                      <div className="column-title">
-                        {list.name}
+      {boards.length === 0 ? (
+        <div className="empty-state">
+          <h2>No boards found</h2>
+
+          <a
+            href={`${API}/seed`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Seed Database
+          </a>
+        </div>
+      ) : (
+        boards.map((board) => (
+          <DragDropContext
+            key={board.id}
+            onDragEnd={handleDragEnd}
+          >
+            <div className="board">
+              {board.lists?.map((list) => (
+                <Droppable
+                  key={list.id}
+                  droppableId={String(list.id)}
+                >
+                  {(provided) => (
+                    <div
+                      className="column"
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                    >
+                      <div className="column-header">
+                        <span className="column-dot"></span>
+
+                        <div className="column-title">
+                          {list.name}
+                        </div>
+
+                        <span className="task-count">
+                          {(list.cards || []).length}
+                        </span>
                       </div>
 
-                      <span className="task-count">
-                        {
-                          (list.cards || [])
-                            .length
-                        }
-                      </span>
-                    </div>
-
-                    {(list.cards || []).map(
-                      (card, index) => (
-                        <Draggable
-                          key={card.id}
-                          draggableId={String(
-                            card.id
-                          )}
-                          index={index}
-                        >
-                          {(provided) => (
-                            <div
-                              className="card"
-                              ref={
-                                provided.innerRef
-                              }
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                            >
-                              <div className="card-top">
-                                <span className="card-tag">
-                                  Task
-                                </span>
-                              </div>
-
-                              <h4>
-                                {card.title}
-                              </h4>
-
-                              <p>
-                                {
-                                  card.description
+                      {(list.cards || []).map(
+                        (card, index) => (
+                          <Draggable
+                            key={card.id}
+                            draggableId={String(
+                              card.id
+                            )}
+                            index={index}
+                          >
+                            {(provided) => (
+                              <div
+                                className="card"
+                                ref={
+                                  provided.innerRef
                                 }
-                              </p>
-
-                              <button
-                                className="delete-btn"
-                                onClick={() =>
-                                  deleteCard(
-                                    card.id
-                                  )
-                                }
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
                               >
-                                Delete
-                              </button>
-                            </div>
-                          )}
-                        </Draggable>
-                      )
-                    )}
+                                <div className="card-top">
+                                  <span className="card-tag">
+                                    Task
+                                  </span>
+                                </div>
 
-                    {
-                      provided.placeholder
-                    }
+                                <h4>
+                                  {card.title}
+                                </h4>
 
-                    <div className="add-card">
-                      <input
-                        type="text"
-                        placeholder="Add a new task..."
-                        value={
-                          newCards[
-                            list.id
-                          ] || ""
-                        }
-                        onChange={(e) =>
-                          setNewCards({
-                            ...newCards,
-                            [list.id]:
-                              e.target.value,
-                          })
-                        }
-                      />
+                                <p>
+                                  {
+                                    card.description
+                                  }
+                                </p>
 
-                      <button
-                        onClick={() =>
-                          addCard(list.id)
-                        }
-                      >
-                        + Add Card
-                      </button>
+                                <button
+                                  className="delete-btn"
+                                  onClick={() =>
+                                    deleteCard(
+                                      card.id
+                                    )
+                                  }
+                                >
+                                  Delete
+                                </button>
+                              </div>
+                            )}
+                          </Draggable>
+                        )
+                      )}
+
+                      {provided.placeholder}
+
+                      <div className="add-card">
+                        <input
+                          type="text"
+                          placeholder="Add a new task..."
+                          value={
+                            newCards[
+                              list.id
+                            ] || ""
+                          }
+                          onChange={(e) =>
+                            setNewCards({
+                              ...newCards,
+                              [list.id]:
+                                e.target.value,
+                            })
+                          }
+                        />
+
+                        <button
+                          onClick={() =>
+                            addCard(list.id)
+                          }
+                        >
+                          + Add Card
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </Droppable>
-            ))}
-          </div>
-        </DragDropContext>
-      ))
-    )}
-  </div>
-);
+                  )}
+                </Droppable>
+              ))}
+            </div>
+          </DragDropContext>
+        ))
+      )}
+    </div>
+  );
 }
 
 export default App;
