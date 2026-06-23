@@ -44,4 +44,4 @@ npm run dev
 ```
 
 ### Live Link
-https://forge2-qualifier-shreya-nuur7pv0o.vercel.app/
+https://forge2-qualifier-shreya.vercel.app/
