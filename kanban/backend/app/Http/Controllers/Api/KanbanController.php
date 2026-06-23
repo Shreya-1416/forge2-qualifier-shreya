@@ -44,45 +44,62 @@ class KanbanController extends Controller
         ]);
 
         Card::create([
-            'board_list_id' => $todo->id,
-            'title' => 'Setup Laravel Backend',
-            'description' => 'Complete backend setup'
-        ]);
+    'board_list_id' => $todo->id,
+    'title' => 'Setup Laravel Backend',
+    'description' => 'Complete backend setup',
+    'label' => 'Backend',
+    'assignee' => 'Shreya',
+    'due_date' => now()->addDays(2)
+]);
 
-        Card::create([
-            'board_list_id' => $doing->id,
-            'title' => 'Build React Frontend',
-            'description' => 'Create Kanban UI'
-        ]);
+Card::create([
+    'board_list_id' => $doing->id,
+    'title' => 'Build React Frontend',
+    'description' => 'Create Kanban UI',
+    'label' => 'Frontend',
+    'assignee' => 'Shreya',
+    'due_date' => now()->addDays(4)
+]);
 
-        Card::create([
-            'board_list_id' => $done->id,
-            'title' => 'Configure Hermes',
-            'description' => 'Memory + cron working'
-        ]);
+Card::create([
+    'board_list_id' => $done->id,
+    'title' => 'Configure Hermes',
+    'description' => 'Memory + cron working',
+    'label' => 'AI',
+    'assignee' => 'Shreya',
+    'due_date' => now()->subDay()
+]);
 
         return response()->json([
             'message' => 'Seed data created'
         ]);
     }
 
-    public function store(Request $request)
-    {
-        $card = Card::create([
-            'board_list_id' => $request->board_list_id,
-            'title' => $request->title,
-            'description' => $request->description
-        ]);
+   public function store(Request $request)
+{
+    $card = Card::create([
+        'board_list_id' => $request->board_list_id,
+        'title' => $request->title,
+        'description' => $request->description,
+        'label' => $request->label,
+        'assignee' => $request->assignee,
+        'due_date' => $request->due_date
+    ]);
 
-        return response()->json($card);
-    }
+    return response()->json($card);
+}
 
-   public function update(Request $request, $id)
+public function update(Request $request, $id)
 {
     $card = Card::findOrFail($id);
 
     $card->update([
-        'board_list_id' => $request->board_list_id
+        'board_list_id' => $request->board_list_id ?? $card->board_list_id,
+        'title' => $request->title ?? $card->title,
+        'description' => $request->description ?? $card->description,
+        'label' => $request->label ?? $card->label,
+        'assignee' => $request->assignee ?? $card->assignee,
+        'due_date' => $request->due_date ?? $card->due_date,
     ]);
 
     return response()->json($card);
