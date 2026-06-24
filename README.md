@@ -199,6 +199,7 @@ http://localhost:5173
 
 # Live URL
 
+https://forge2-qualifier-shreya.vercel.app/
 
 ## Author
 
