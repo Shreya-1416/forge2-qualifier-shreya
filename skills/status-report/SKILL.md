@@ -1,8 +1,10 @@
----
 
-name: kanban-board-manager
-description: Manage and maintain the Forge 2 Kanban Board application. Use this skill for tasks involving boards, task cards, drag-and-drop workflow, search functionality, task editing, statistics dashboard, and UI enhancements.
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Name: kanban-board-manager
+
+```
+Description: Manage and maintain the Forge 2 Kanban Board application. Use this skill for tasks involving boards, task cards, drag-and-drop workflow, search functionality, task editing, statistics dashboard, and UI enhancements.
+
+```
 
 # Kanban Board Manager Skill
 
