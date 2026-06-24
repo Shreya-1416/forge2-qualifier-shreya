@@ -115,39 +115,9 @@ const COLUMNS = [
 ];
 
 const INITIAL_CARDS = {
-  todo: [
-    {
-      id: 1,
-      title: "Setup Laravel Backend",
-      tag: "Backend",
-      desc: "Complete backend setup",
-      assignee: "Shreya",
-      due: "Jun 25, 2026",
-      overdue: true,
-    },
-  ],
-  doing: [
-    {
-      id: 2,
-      title: "Build React Frontend",
-      tag: "Frontend",
-      desc: "Create Kanban UI",
-      assignee: "Shreya",
-      due: "Jun 27, 2026",
-      overdue: true,
-    },
-  ],
-  done: [
-    {
-      id: 3,
-      title: "Configure Hermes",
-      tag: "AI",
-      desc: "Memory + cron working",
-      assignee: "Shreya",
-      due: "Jun 22, 2026",
-      overdue: false,
-    },
-  ],
+  todo: [],
+  doing: [],
+  done: [],
 };
 
 let nextId = 10;
@@ -390,7 +360,8 @@ export default function App() {
   const [boards, setBoards] = useState([
   {
     id: 1,
-    name: "Main Board"
+    name: "Main Board",
+    cards: INITIAL_CARDS
   }
 ]);
 
@@ -400,9 +371,14 @@ const addBoard = () => {
   if (!boardName) return;
 
   const newBoard = {
-    id: Date.now(),
-    name: boardName
-  };
+  id: Date.now(),
+  name: boardName,
+  cards: {
+    todo: [],
+    doing: [],
+    done: []
+  }
+};
 
   setBoards(prev => [...prev, newBoard]);
 };
