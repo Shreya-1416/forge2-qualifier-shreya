@@ -387,6 +387,27 @@ export default function App() {
   const [search, setSearch] = useState("");
   const [editCard, setEditCard] = useState(null);
   const [dragCard, setDragCard] = useState(null);
+  const [boards, setBoards] = useState([
+  {
+    id: 1,
+    name: "Main Board"
+  }
+]);
+
+const addBoard = () => {
+  const boardName = prompt("Enter Board Name");
+
+  if (!boardName) return;
+
+  const newBoard = {
+    id: Date.now(),
+    name: boardName
+  };
+
+  setBoards(prev => [...prev, newBoard]);
+};
+
+const [selectedBoard, setSelectedBoard] = useState(1);
 
   const totalTasks = Object.values(cards).flat().length;
   const completed = cards.done.length;
@@ -498,8 +519,7 @@ export default function App() {
         </div>
 
         <button
-  onClick={() => alert("Add Board Feature Coming Soon")}
-  style={{
+onClick={addBoard}  style={{
     background: "linear-gradient(90deg,#7c3aed,#6d28d9)",
     border: "none",
     color: "white",
@@ -558,6 +578,36 @@ export default function App() {
             </div>
           ))}
         </div>
+        
+        <div
+  style={{
+    display: "flex",
+    gap: "10px",
+    flexWrap: "wrap",
+    marginBottom: "25px"
+  }}
+>
+  {boards.map(board => (
+    <button
+      key={board.id}
+      onClick={() => setSelectedBoard(board.id)}
+      style={{
+        padding: "10px 18px",
+        borderRadius: "12px",
+        border: "none",
+        cursor: "pointer",
+        fontWeight: "600",
+        background:
+          selectedBoard === board.id
+            ? "linear-gradient(90deg,#7c3aed,#a855f7)"
+            : "rgba(255,255,255,.08)",
+        color: "white"
+      }}
+    >
+      {board.name}
+    </button>
+  ))}
+</div>
 
         {/* ── SEARCH ── */}
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 36 }}>
