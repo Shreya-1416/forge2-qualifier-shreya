@@ -19,4 +19,9 @@ class Card extends Model
     {
         return $this->belongsTo(BoardList::class);
     }
+
+    public function board()
+    {
+        return $this->belongsToThrough(Board::class, BoardList::class);
+    }
 }
