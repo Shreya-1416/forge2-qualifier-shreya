@@ -236,7 +236,7 @@ After board creation, React state may not be immediately updated. Both `addCard(
 
 ```
 ┌──────────────────┐
-│      boards       │
+│      boards      │
 ├──────────────────┤
 │ id (PK)          │
 │ name             │
@@ -246,7 +246,7 @@ After board creation, React state may not be immediately updated. Both `addCard(
          │ 1:N
          ▼
 ┌──────────────────┐
-│    board_lists    │
+│    board_lists   │
 ├──────────────────┤
 │ id (PK)          │
 │ board_id (FK)    │──→ boards.id (cascade on delete)
@@ -258,7 +258,7 @@ After board creation, React state may not be immediately updated. Both `addCard(
          │ 1:N
          ▼
 ┌──────────────────┐
-│      cards        │
+│      cards       │
 ├──────────────────┤
 │ id (PK)          │
 │ board_list_id(FK)│──→ board_lists.id (cascade on delete)
