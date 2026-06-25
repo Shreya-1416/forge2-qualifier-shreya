@@ -9,8 +9,11 @@ This directory contains a summary of the Forge 2 Kanban Board project developmen
 ## Project Summary
 
 **Name**: Forge 2 — Kanban Board
+
 **Stack**: Laravel 13 + React 19 + SQLite
+
 **Live URL**: https://forge2-qualifier-shreya.vercel.app/
+
 **Repository**: `https://github.com/Shreya-1416/forge2-qualifier-shreya` (branch: `main`)
 
 ---
